@@ -3,7 +3,6 @@ package me.untrustedaccount.commands;
 import me.untrustedaccount.BlockDefensePlugin;
 import me.untrustedaccount.Constants;
 import me.untrustedaccount.CustomPlayer;
-import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
