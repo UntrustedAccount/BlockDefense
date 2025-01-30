@@ -1,0 +1,19 @@
+name: BlockDefense
+version: 1.0
+main: me.untrustedaccount.BlockDefensePlugin
+author: untrustedaccount
+api-version: 1.21
+
+commands:
+  reset:
+    description: Resets the game.
+  team:
+    description: Set your team.
+  kit:
+    description: Give a kit.
+  start:
+    description: Starts the game.
+  store:
+    description: Opens the store.
+  chat:
+    description: Set who you chat to.
