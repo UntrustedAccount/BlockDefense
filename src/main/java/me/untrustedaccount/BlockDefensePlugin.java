@@ -22,6 +22,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 
 
 public class BlockDefensePlugin extends JavaPlugin implements Listener {
@@ -41,12 +42,12 @@ public class BlockDefensePlugin extends JavaPlugin implements Listener {
     public void onEnable() {
         getLogger().info("Plugin starting...");
         getServer().getPluginManager().registerEvents(this, this);
-        getCommand("reset").setExecutor(new ResetCommand(this));
-        getCommand("kit").setExecutor(new KitCommand(this));
-        getCommand("team").setExecutor(new TeamCommand(this));
-        getCommand("start").setExecutor(new StartCommand(this));
-        getCommand("store").setExecutor(new StoreCommand(this));
-        getCommand("chat").setExecutor(new ChatCommand(this));
+        Objects.requireNonNull(getCommand("reset")).setExecutor(new ResetCommand(this));
+        Objects.requireNonNull(getCommand("kit")).setExecutor(new KitCommand(this));
+        Objects.requireNonNull(getCommand("team")).setExecutor(new TeamCommand(this));
+        Objects.requireNonNull(getCommand("start")).setExecutor(new StartCommand(this));
+        Objects.requireNonNull(getCommand("store")).setExecutor(new StoreCommand(this));
+        Objects.requireNonNull(getCommand("chat")).setExecutor(new ChatCommand(this));
     }
 
     @Override
@@ -62,8 +63,6 @@ public class BlockDefensePlugin extends JavaPlugin implements Listener {
             if (p != null && p.isOnline() && player.getUniqueId().equals(customPlayer.getPlayerUUID()))
                 return customPlayer;
         }
-
-        getLogger().info("Adding new player for " + player.getName());
 
         CustomPlayer newCustomPlayer = new CustomPlayer(this, player);
         players.add(newCustomPlayer);

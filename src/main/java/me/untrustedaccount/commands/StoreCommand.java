@@ -39,8 +39,8 @@ public class StoreCommand implements CommandExecutor {
     private void store(Player player) {
         Merchant merchant = Bukkit.createMerchant(Component.text("Store").color(NamedTextColor.GOLD).decoration(TextDecoration.ITALIC, false));
 
-        ArrayList<ItemStack> inputItems = new ArrayList<ItemStack>();
-        ArrayList<ItemStack> outputItems = new ArrayList<ItemStack>();
+        ArrayList<ItemStack> inputItems = new ArrayList<>();
+        ArrayList<ItemStack> outputItems = new ArrayList<>();
         inputItems.add(new ItemStack(Material.COPPER_INGOT, 1));
         outputItems.add(new ItemStack(Material.REDSTONE, 16));
 
@@ -77,7 +77,7 @@ public class StoreCommand implements CommandExecutor {
             outputItems.add(item);
         }
 
-        ArrayList<MerchantRecipe> recipes = new ArrayList<MerchantRecipe>();
+        ArrayList<MerchantRecipe> recipes = new ArrayList<>();
 
         for (int i=0; i<inputItems.size(); i++) {
             MerchantRecipe recipe = new MerchantRecipe(outputItems.get(i), (int) 10e6);

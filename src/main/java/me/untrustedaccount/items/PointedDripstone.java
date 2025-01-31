@@ -49,8 +49,7 @@ public class PointedDripstone implements CustomItem{
 
         BlockData blockData = Material.POINTED_DRIPSTONE.createBlockData();
 
-        if (blockData instanceof org.bukkit.block.data.type.PointedDripstone) {
-            org.bukkit.block.data.type.PointedDripstone pointedDripstone = (org.bukkit.block.data.type.PointedDripstone) blockData;
+        if (blockData instanceof org.bukkit.block.data.type.PointedDripstone pointedDripstone) {
             pointedDripstone.setVerticalDirection(BlockFace.DOWN);
         }
 

@@ -8,7 +8,6 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 import java.util.UUID;
-import java.util.logging.Logger;
 
 
 public class CustomPlayer {
@@ -52,13 +51,6 @@ public class CustomPlayer {
         this.plugin = plugin;
         this.playerUUID = player.getUniqueId();
         this.spawnPoint = player.getWorld().getSpawnLocation();
-    }
-
-    private void printInfo() {
-        Logger logger = plugin.getLogger();
-        logger.info("Team: " + team);
-        logger.info("Movement cooldown: " + hasMovementCooldown);
-        logger.info("Claimed kit: " + hasClaimedKit);
     }
 
     public UUID getPlayerUUID() {
@@ -143,8 +135,6 @@ public class CustomPlayer {
     }
 
     public void setName() {
-        plugin.getLogger().info("Setting name...");
-        Player player = getPlayer();
         if (isDefender()) {
             setDefendingTeamName();
             return;
@@ -160,7 +150,6 @@ public class CustomPlayer {
 
     private void resetDisplayName() {
         Player player = getPlayer();
-        plugin.getLogger().info("Resetting name.");
         Component name = Component.text(player.getName()).color(NamedTextColor.WHITE);
         player.displayName(name);
         player.playerListName(name);
@@ -168,7 +157,6 @@ public class CustomPlayer {
 
     private void setAttackingTeamName() {
         Player player = getPlayer();
-        plugin.getLogger().info("Setting name to attacker.");
         Component redName = Component.text("[Attacker] " + player.getName()).color(NamedTextColor.RED);
         player.displayName(redName);
         player.playerListName(redName);
@@ -176,7 +164,6 @@ public class CustomPlayer {
 
     private void setDefendingTeamName() {
         Player player = getPlayer();
-        plugin.getLogger().info("Setting name to defender.");
         Component blueName = Component.text("[Defender] " + player.getName()).color(NamedTextColor.BLUE);
         player.displayName(blueName);
         player.playerListName(blueName);
