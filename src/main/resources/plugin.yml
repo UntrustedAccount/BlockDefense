@@ -1,12 +1,10 @@
 name: BlockDefense
-version: 1.0
+version: 1.0.1
 main: me.untrustedaccount.BlockDefensePlugin
 author: untrustedaccount
 api-version: 1.21
 
 commands:
-  reset:
-    description: Resets the game.
   team:
     description: Set your team.
   kit:
