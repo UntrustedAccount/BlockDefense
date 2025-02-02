@@ -38,7 +38,7 @@ public class CustomPlayer {
         ALL
     }
 
-    public Location spawnPoint;
+    private Location spawnPoint;
 
     private final UUID playerUUID;
     private Team team = Team.NONE;
@@ -125,9 +125,13 @@ public class CustomPlayer {
     }
 
     public void setSpawnPoint(Location newSpawnPoint) {
-        spawnPoint = newSpawnPoint;
+        this.spawnPoint = newSpawnPoint;
         Player player = getPlayer();
         player.setRespawnLocation(newSpawnPoint, true);
+    }
+
+    public Location getSpawnPoint() {
+        return this.spawnPoint;
     }
 
     public void updatePlayer() {

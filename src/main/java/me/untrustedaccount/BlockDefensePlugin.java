@@ -34,6 +34,7 @@ public class BlockDefensePlugin extends JavaPlugin implements Listener {
     public final ArrayList<CustomItem> customItems = new ArrayList<>(Arrays.asList(new Fireball(this), new Alarm(this), new Compass(this), new PointedDripstone(this)));
     public final CustomItem compass = customItems.get(2);
 
+    public boolean isGameActive;
     public Block goalBlock;
     public final ArrayList<Entity> spawnedEntities = new ArrayList<>();
     public boolean isAlarmActive = false;
@@ -42,7 +43,6 @@ public class BlockDefensePlugin extends JavaPlugin implements Listener {
     public void onEnable() {
         getLogger().info("Plugin starting...");
         getServer().getPluginManager().registerEvents(this, this);
-        Objects.requireNonNull(getCommand("reset")).setExecutor(new ResetCommand(this));
         Objects.requireNonNull(getCommand("kit")).setExecutor(new KitCommand(this));
         Objects.requireNonNull(getCommand("team")).setExecutor(new TeamCommand(this));
         Objects.requireNonNull(getCommand("start")).setExecutor(new StartCommand(this));
@@ -156,6 +156,7 @@ public class BlockDefensePlugin extends JavaPlugin implements Listener {
 
         event.setDropItems(false);
         goalBlock = null;
+        isGameActive = false;
 
         // The attacking team has broken the block and won
         broadcastWin();
@@ -198,6 +199,10 @@ public class BlockDefensePlugin extends JavaPlugin implements Listener {
         Player player = event.getPlayer();
         CustomPlayer customPlayer = getCustomPlayer(player);
 
+        if (player.getRespawnLocation() == null) {
+            event.setRespawnLocation(customPlayer.getSpawnPoint());
+        }
+
         player.setGameMode(GameMode.SPECTATOR);
         customPlayer.setMovementCooldown(true);
 
@@ -211,7 +216,6 @@ public class BlockDefensePlugin extends JavaPlugin implements Listener {
                     player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_CHIME, 1.0f, 1.0f);
                     countdown--;
                 } else {
-                    player.teleport(customPlayer.spawnPoint);
                     player.setGameMode(GameMode.SURVIVAL);
                     customPlayer.setMovementCooldown(false);
                     cancel();
