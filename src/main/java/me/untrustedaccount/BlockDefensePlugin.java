@@ -39,6 +39,8 @@ public class BlockDefensePlugin extends JavaPlugin implements Listener {
     public final ArrayList<Entity> spawnedEntities = new ArrayList<>();
     public boolean isAlarmActive = false;
 
+    public ScoreboardTimer timer;
+
     @Override
     public void onEnable() {
         getLogger().info("Plugin starting...");
@@ -157,6 +159,7 @@ public class BlockDefensePlugin extends JavaPlugin implements Listener {
         event.setDropItems(false);
         goalBlock = null;
         isGameActive = false;
+        timer.stop();
 
         // The attacking team has broken the block and won
         broadcastWin();
@@ -212,7 +215,7 @@ public class BlockDefensePlugin extends JavaPlugin implements Listener {
             @Override
             public void run() {
                 if (countdown > 0) {
-                    player.sendTitlePart(TitlePart.TITLE, Component.text("Respawning in " + String.valueOf(countdown)).color(NamedTextColor.GOLD));
+                    player.sendTitlePart(TitlePart.TITLE, Component.text("Respawning in " + countdown).color(NamedTextColor.GOLD));
                     player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_CHIME, 1.0f, 1.0f);
                     countdown--;
                 } else {

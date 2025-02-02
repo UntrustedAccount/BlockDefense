@@ -3,6 +3,7 @@ package me.untrustedaccount.commands;
 import me.untrustedaccount.BlockDefensePlugin;
 import me.untrustedaccount.Constants;
 import me.untrustedaccount.CustomPlayer;
+import me.untrustedaccount.ScoreboardTimer;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.title.TitlePart;
@@ -38,6 +39,7 @@ public class StartCommand implements CommandExecutor {
     }
 
     private void startGame(Player player) {
+        plugin.timer = new ScoreboardTimer();
         resetWorld(player);
         resetBlock();
         resetEntities();
@@ -75,6 +77,7 @@ public class StartCommand implements CommandExecutor {
                 } else {
                     sendCountdownTitle("Start!", Sound.BLOCK_NOTE_BLOCK_PLING);
                     setCooldown(false);
+                    plugin.timer.start(plugin);
                     cancel();
                 }
             }
