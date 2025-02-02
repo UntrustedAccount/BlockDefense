@@ -14,9 +14,7 @@ Both the defenders and attackers have access to a store containing various block
 - `/team defender` adds the player to the defenders team.
 - `/team clear` removes the player from all teams.
 
-`/reset`: Resets the game to the current location.
-
-`/start`: Starts the game with a five-second countdown.
+`/start`: Starts the game with a five-second countdown. Sets the goal block to the location of the player who called the command.
 
 `/kit`: Used to choose a kit. Defender kits can only be claimed once.
 - `/kit` gives the attacker a starting kit.
