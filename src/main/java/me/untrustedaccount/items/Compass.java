@@ -4,6 +4,7 @@ import me.untrustedaccount.BlockDefensePlugin;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -44,8 +45,11 @@ public class Compass implements CustomItem{
             player.sendActionBar(message);
             return;
         }
-        player.setCompassTarget(plugin.goalBlock.getLocation());
-        Component message = Component.text("Location set.");
+
+        Location goalLocation = plugin.goalBlock.getLocation();
+
+        player.setCompassTarget(goalLocation);
+        Component message = Component.text(String.format("%d blocks away.", (int) player.getLocation().distance(goalLocation)));
         player.sendActionBar(message);
     }
 
